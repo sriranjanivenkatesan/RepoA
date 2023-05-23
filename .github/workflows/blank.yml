@@ -1,0 +1,30 @@
+name: Publish to RepoB
+
+"on":
+  push:
+    branches:
+      - main
+    paths:
+      - 'posts/**'
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: RepoA/checkout@main
+      - name: Creates output folder and remove markdown
+        run:  |
+              mkdir output
+              cp -r posts output
+      - name: Pushes to private repository
+        id: push_directory
+        uses: RepoB/github-action-push-to-another-repository@ssh-deploy-key
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.WORKFLOW_DEPLOY_KEY }}
+        with:
+          source-directory: output/
+          destination-github-username: 'sriranjanivenkatesan'
+          destination-repository-name: 'RepoB'
+          user-email: sriranjani.venkatesan@psiog.com
+          commit-message: pushed from $GITHUB_REF
+          target-branch: main
