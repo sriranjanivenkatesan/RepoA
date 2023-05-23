@@ -18,7 +18,7 @@ jobs:
               cp -r posts output
       - name: Pushes to private repository
         id: push_directory
-        uses: RepoB/github-action-push-to-another-repository@ssh-deploy-key
+        uses: actions/github-action-push-to-another-repository@ssh-deploy-key
         env:
           SSH_DEPLOY_KEY: ${{ secrets.WORKFLOW_DEPLOY_KEY }}
         with:
