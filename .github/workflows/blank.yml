@@ -18,7 +18,7 @@ jobs:
               cp -r posts output
       - name: Pushes to private repository
         id: push_directory
-        uses: cpina/github-action-push-to-another-repository@ssh-deploy-key
+        uses: cpina/github-action-push-to-another-repository@main
         with:
           source-directory: output/
           destination-github-username: 'sriranjanivenkatesan'
