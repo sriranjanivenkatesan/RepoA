@@ -11,7 +11,7 @@ jobs:
   post:
     runs-on: ubuntu-latest
     steps:
-      - uses: RepoA/checkout@main
+      - uses: actions/checkout@main
       - name: Creates output folder and remove markdown
         run:  |
               mkdir output
